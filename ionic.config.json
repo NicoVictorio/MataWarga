@@ -1,0 +1,7 @@
+{
+  "name": "MataWarga",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
