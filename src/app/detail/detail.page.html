@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Scene Detail
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <img alt="Scene" [src]="scenes[index].photo_url" />
+    <ion-card-header>
+      <ion-card-title>{{scenes[index].title}}</ion-card-title>
+      <ion-card-subtitle>{{scenes[index].description}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{scenes[index].instance}}
+    </ion-card-content>
+    <ion-card-content>
+      {{scenes[index].likes}} likes
+    </ion-card-content>
+    <ion-card-content>
+      {{scenes[index].dislikes}} dislikes
+    </ion-card-content>
+  </div>
+</ion-content>
