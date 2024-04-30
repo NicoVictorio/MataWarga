@@ -18,6 +18,7 @@ export class LoginserviceService {
       url: "https://avatars.githubusercontent.com/u/86843417?v=4"
     },
   ]
+
   constructor() { }
 
   signup(p_fullname: string, p_username: string, p_password: string, p_url: string) {

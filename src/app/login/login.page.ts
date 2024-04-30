@@ -1,44 +1,54 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginserviceService } from '../loginservice.service';
-import { Route, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { UserserviceService } from '../userservice.service';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
-  username = ""
-  password = ""
-
-  users: any[] = []
-
-  constructor(private loginservice: LoginserviceService, private router: Router) { }
-
-  ngOnInit() {
-    this.users = this.loginservice.users
-    window.location.reload()
+export class LoginPage {
+  constructor(
+    private userService: UserserviceService,
+    private router: Router,
+    private toastController: ToastController
+  ) {
+    console.log(userService.users)
   }
 
-  login() {
-    if (this.username != "" && this.password != "") {
-      const user = this.users.find(u => u.username === this.username && u.password === this.password);
-      if (user) {
-        alert('Login successful!')
-        localStorage.setItem('user', user.username);
-        this.router.navigate(['/home']);
-      } else {
-        alert('Invalid username or password.');
+  username = '';
+  password = '';
+  found = false;
+
+  Login() {
+    this.found = false;
+    for (const user of this.userService.users) {
+      if (user.username === this.username && user.password === this.password) {
+        this.found = true;
+        this.userService.userLogin.id = user.id;
+        this.userService.userLogin.username = user.username;
+        this.userService.userLogin.fullname = user.fullname;
+        this.userService.userLogin.password = user.password;
+        this.userService.userLogin.profile_picture = user.profile_picture;
+        this.router.navigate(["tabs/home"]);
+        break;
       }
     }
-    else {
-      alert("Username and Password cannot be empty!");
+    if (!this.found) {
+      this.presentToast("Gagal Login");
     }
-    this.username = ""
-    this.password = ""
   }
 
-  signup() {
-    this.router.navigate(['/signup']);
+  async presentToast(msg: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 1500,
+      position: 'bottom',
+    });
+    await toast.present();
+  }
+  ToRegister() {
+    this.router.navigate(['register']);
   }
 }

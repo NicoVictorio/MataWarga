@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { SceneserviceService } from '../sceneservice.service';
+import { KejadianserviceService } from '../kejadianservice.service';
+import { Router } from '@angular/router';
+import { UserserviceService } from '../userservice.service';
 
 @Component({
   selector: 'app-home',
@@ -9,16 +10,26 @@ import { SceneserviceService } from '../sceneservice.service';
 })
 export class HomePage implements OnInit {
 
-  user: string | null = localStorage.getItem('user');
-  scenes: any[] = []
+  kejadians: any[] = []
 
-  constructor(private route: ActivatedRoute, private sceneService: SceneserviceService) { }
+  constructor(private router: Router, private kejadianservice: KejadianserviceService, private userService: UserserviceService) { }
 
-  ngOnInit() {
-    this.scenes = this.sceneService.scenes
+  like(id: number) {
+    this.kejadianservice.addLike(id);
+  }
+  dislike(id: number) {
+    this.kejadianservice.addDislike(id);
   }
 
-  likeScene(index: number) {
-    this.sceneService.like(index)
+  chunkArray(arr: any[], chunkSize: number): any[][] {
+    const result = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+      result.push(arr.slice(i, i + chunkSize));
+    }
+    return result;
+  }
+
+  ngOnInit() {
+    this.kejadians = this.kejadianservice.kejadian
   }
 }

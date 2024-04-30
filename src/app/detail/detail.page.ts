@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { KejadianserviceService } from '../kejadianservice.service';
 import { ActivatedRoute } from '@angular/router';
-import { SceneserviceService } from '../sceneservice.service';
+
 
 @Component({
   selector: 'app-detail',
@@ -9,17 +10,32 @@ import { SceneserviceService } from '../sceneservice.service';
 })
 export class DetailPage implements OnInit {
 
-  scenes: any[] = []
+  kejadians: any[] = []
+  kejadian: any
+  comments: any[] = []
+
+  constructor(private route: ActivatedRoute, private kejadianservice: KejadianserviceService) { }
   index = 0
 
-  constructor(private route: ActivatedRoute, private sceneService: SceneserviceService) { }
-
   ngOnInit() {
-    this.scenes = this.sceneService.scenes
+    this.kejadians = this.kejadianservice.kejadian
 
     this.route.params.subscribe(params => {
       this.index = params['index'];
     });
+    this.kejadian = this.kejadians[this.index]
+    this.comments = this.kejadian.komentar
+  }
+
+  like() {
+    this.kejadianservice.addLike(this.kejadian.id);
+  }
+  dislike() {
+    this.kejadianservice.addDislike(this.kejadian.id);
+  }
+
+  likeComment(i: number) {
+    this.kejadianservice.addLikeComment(this.kejadian.id, i);
   }
 
 }
