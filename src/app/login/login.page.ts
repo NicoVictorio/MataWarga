@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserserviceService } from '../userservice.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { LoginserviceService } from '../loginservice.service';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +13,10 @@ export class LoginPage {
   constructor(
     private userService: UserserviceService,
     private router: Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private loginService: LoginserviceService
   ) {
-    console.log(userService.users)
+    console.log(userService.users);
   }
 
   username = '';
@@ -31,12 +33,13 @@ export class LoginPage {
         this.userService.userLogin.fullname = user.fullname;
         this.userService.userLogin.password = user.password;
         this.userService.userLogin.profile_picture = user.profile_picture;
-        this.router.navigate(["tabs/home"]);
+        this.loginService.login();
+        this.router.navigate(['tabs/home']);
         break;
       }
     }
     if (!this.found) {
-      this.presentToast("Gagal Login");
+      this.presentToast('Gagal Login');
     }
   }
 
