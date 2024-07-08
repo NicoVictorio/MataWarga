@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { KejadianserviceService } from '../kejadianservice.service';
-import { Router } from '@angular/router';
-import { UserserviceService } from '../userservice.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +10,7 @@ export class HomePage implements OnInit {
 
   kejadians: any[] = []
 
-  constructor(private router: Router, private kejadianservice: KejadianserviceService, private userService: UserserviceService) { }
+  constructor(private kejadianservice: KejadianserviceService) { }
 
   like(id: number) {
     this.kejadianservice.addLike(id);

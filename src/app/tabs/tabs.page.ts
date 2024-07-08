@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginserviceService } from '../loginservice.service';
+import { UserserviceService } from '../userservice.service';
 
 @Component({
   selector: 'app-tabs',
@@ -10,14 +10,15 @@ import { LoginserviceService } from '../loginservice.service';
 export class TabsPage {
   constructor(
     private router: Router,
-    private loginService: LoginserviceService
-  ) {}
+    private userService: UserserviceService
+  ) { }
 
   logout() {
-    this.loginService.logout();
+    this.userService.logout();
     this.router.navigateByUrl('/tabs/login');
   }
+
   isLoggedIn() {
-    return this.loginService.isAuthenticated();
+    return this.userService.isAuthenticated();
   }
 }

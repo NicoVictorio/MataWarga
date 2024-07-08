@@ -8,14 +8,23 @@
   <div class="container">
     <h1>Register</h1>
     <br>
-    <ion-input label="Username" label-placement="floating" fill="outline" placeholder="Enter Username" [(ngModel)]="username"></ion-input>
+    <ion-input label="Username" label-placement="floating" fill="outline" placeholder="Enter Username"
+      [(ngModel)]="new_username"></ion-input>
     <br>
-    <ion-input label="Full Name" label-placement="floating" fill="outline" placeholder="Enter Full Name" [(ngModel)]="fullName"></ion-input>
+    <ion-input label="Full Name" label-placement="floating" fill="outline" placeholder="Enter Full Name"
+      [(ngModel)]="new_fullname"></ion-input>
     <br>
-    <ion-input label="Password" label-placement="floating" fill="outline" placeholder="Enter Password" type="password" [(ngModel)]="password"></ion-input>
+    <ion-input label="Password" label-placement="floating" fill="outline" placeholder="Enter Password" type="password"
+      [(ngModel)]="new_password"></ion-input>
     <br>
-    <ion-input label="Foto Profil" label-placement="floating" fill="outline" placeholder="Enter Full Name" [(ngModel)]="profil"></ion-input>
-    <br>
-    <ion-button expand="block" (click)="Register()">Submit</ion-button>
+    <ion-item *ngIf="imageType=='Camera'">
+      <ion-button (click)="captureImage()">Capture Image</ion-button>
+      <ion-img [src]="base64" />
+    </ion-item>
+    <ion-item *ngIf="imageType=='URL'">
+      <ion-input [(ngModel)]="new_url" label="Image URL" labelPlacement="floating" />
+      <ion-img [src]="new_url" />
+    </ion-item>
+    <ion-button expand="block" (click)="register()">Submit</ion-button>
   </div>
 </ion-content>
