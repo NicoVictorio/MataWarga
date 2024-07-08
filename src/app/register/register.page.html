@@ -17,14 +17,24 @@
     <ion-input label="Password" label-placement="floating" fill="outline" placeholder="Enter Password" type="password"
       [(ngModel)]="new_password"></ion-input>
     <br>
-    <ion-item *ngIf="imageType=='Camera'">
-      <ion-button (click)="captureImage()">Capture Image</ion-button>
-      <ion-img [src]="base64" />
-    </ion-item>
-    <ion-item *ngIf="imageType=='URL'">
-      <ion-input [(ngModel)]="new_url" label="Image URL" labelPlacement="floating" />
-      <ion-img [src]="new_url" />
-    </ion-item>
+    <ion-input *ngIf="imageType=='URL'" [(ngModel)]="new_url" label="Image URL" labelPlacement="floating" fill="outline"
+      placeholder="Enter Image URL" />
+    <ion-img [src]="new_url" *ngIf="imageType=='URL'" />
+    <ion-button *ngIf="imageType=='Camera'" (click)="captureImage()">Capture Image</ion-button>
+    <ion-img [src]="base64" *ngIf="imageType=='Camera'" />
+    <div class="radio-group">
+      <ion-radio-group [(ngModel)]="imageType">
+        <ion-item>
+          <ion-label>URL</ion-label>
+          <ion-radio slot="start" value="URL"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Camera</ion-label>
+          <ion-radio slot="start" value="Camera"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </div>
     <ion-button expand="block" (click)="register()">Submit</ion-button>
+    <ion-button expand="block" (click)="login()">Login</ion-button>
   </div>
 </ion-content>

@@ -33,11 +33,10 @@ export class RegisterPage {
     if (this.imageType == 'Camera') {
       this.new_url = "https://ubaya.me/hybrid/160421029/uas_images/" + this.new_username + ".png"
     }
-
     this.userService.register(this.new_username, this.new_password, this.new_fullname,
       this.new_url, this.base64).subscribe((response: any) => {
-        if (response.result === 'success') {
-          alert("success")
+        if (response.result === "success") {
+          alert("Register Success")
         }
         else {
           alert(response.message)
@@ -47,6 +46,10 @@ export class RegisterPage {
     this.new_password = ""
     this.new_fullname = ""
     this.new_url = ""
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
+  }
+
+  login() {
+    this.router.navigate(['']);
   }
 }

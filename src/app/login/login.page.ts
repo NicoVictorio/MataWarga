@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { UserserviceService } from '../userservice.service';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +11,7 @@ export class LoginPage {
   constructor(
     private userService: UserserviceService,
     private router: Router
-  ) {}
+  ) { }
 
   username = '';
   password = '';
@@ -30,10 +29,10 @@ export class LoginPage {
           this.userService.userLogin.fullname = response.fullname;
           this.userService.userLogin.password = this.password;
           this.userService.userLogin.url = response.url;
-          alert('success');
+          alert('Login Success');
           this.router.navigate(['tabs/home']);
         } else {
-          alert('username and password not match');
+          alert('Username and Password not match');
         }
       });
     this.username = '';

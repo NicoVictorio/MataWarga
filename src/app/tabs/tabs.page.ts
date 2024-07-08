@@ -16,6 +16,7 @@ export class TabsPage {
   logout() {
     this.userService.logout();
     this.router.navigateByUrl('/tabs/login');
+    this.userService.isLoggedIn = false;
   }
 
   isLoggedIn() {

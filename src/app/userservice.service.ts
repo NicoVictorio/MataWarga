@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class UserserviceService {
   constructor(private http: HttpClient) { }
   isLoggedIn: boolean = false;
+
   users = []
   userLogin = {
     id: '',
@@ -34,7 +35,9 @@ export class UserserviceService {
     body.set('password', p_password.toString());
     body.set('fullname', p_fullname.toString());
     body.set('url', p_url.toString());
-    body.set('base64', p_base64.toString());
+    if (p_base64) {
+      body.set('base64', p_base64.toString());
+    }
     const urlEncodedData = body.toString();
     return this.http.post("https://ubaya.me/hybrid/160421029/uas_register.php", urlEncodedData, { headers });
   }
