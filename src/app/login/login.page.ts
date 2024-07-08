@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserserviceService } from '../userservice.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-  constructor(private userService: UserserviceService, private router: Router) { }
+  constructor(
+    private userService: UserserviceService,
+    private router: Router
+  ) {}
 
   username = '';
   password = '';
@@ -16,23 +20,24 @@ export class LoginPage {
 
   login() {
     this.found = false;
-    this.userService.login(this.username, this.password).subscribe((response: any) => {
+    this.userService
+      .login(this.username, this.password)
+      .subscribe((response: any) => {
         if (response.result === 'success') {
           this.found = true;
           this.userService.userLogin.id = response.id;
           this.userService.userLogin.username = this.username;
           this.userService.userLogin.fullname = response.fullname;
-          this.userService.userLogin.password = this.password;  
+          this.userService.userLogin.password = this.password;
           this.userService.userLogin.url = response.url;
-          alert("success");
+          alert('success');
           this.router.navigate(['tabs/home']);
-        }
-        else {
-          alert("username and password not match")
+        } else {
+          alert('username and password not match');
         }
       });
-    this.username = ""
-    this.password = ""
+    this.username = '';
+    this.password = '';
   }
 
   register() {
