@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Draft List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Draft List</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item *ngFor="let kejadian of kejadianList">
+      <ion-label>
+        <h2>{{ kejadian.judul }}</h2>
+        <p>Created by: {{ kejadian.author }}</p>
+        <p>{{ kejadian.deskripsi }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

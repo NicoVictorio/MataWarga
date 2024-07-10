@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { KejadianserviceService } from '../kejadianservice.service';
 import { UserserviceService } from '../userservice.service';
-// import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-tambah',
@@ -13,9 +12,7 @@ import { UserserviceService } from '../userservice.service';
 export class TambahPage {
   constructor(
     private kejadianService: KejadianserviceService,
-    private router: Router,
-    private toastController: ToastController,
-    private userService: UserserviceService
+    private toastController: ToastController
   ) {}
 
   ngOnInit() {

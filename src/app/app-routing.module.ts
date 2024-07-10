@@ -36,11 +36,19 @@ const routes: Routes = [
     path: 'search',
     loadChildren: () =>
       import('./search/search.module').then((m) => m.SearchPageModule),
-  },  {
-    path: 'drafttambah',
-    loadChildren: () => import('./drafttambah/drafttambah.module').then( m => m.DrafttambahPageModule)
   },
-
+  {
+    path: 'drafttambah',
+    loadChildren: () =>
+      import('./drafttambah/drafttambah.module').then(
+        (m) => m.DrafttambahPageModule
+      ),
+  },
+  {
+    path: 'draftlist',
+    loadChildren: () =>
+      import('./draftlist/draftlist.module').then((m) => m.DraftlistPageModule),
+  },
 ];
 @NgModule({
   imports: [

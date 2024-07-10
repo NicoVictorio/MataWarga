@@ -10,6 +10,18 @@
     <ion-content class="ion-padding">
       <ion-list>
         <ion-menu-toggle>
+          <ion-item routerLink="/drafttambah">
+            <ion-icon name="cart-outline" slot="start"></ion-icon>
+            <ion-label>Add to cart</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink="/draftlist">
+            <ion-icon name="cart-outline" slot="start"></ion-icon>
+            <ion-label>Cart List</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
           <ion-item>
             <ion-button (click)="logout()">Logout</ion-button>
           </ion-item>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserserviceService } from './userservice.service';
 import { Router } from '@angular/router';
+import { DexieService } from './dexie.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private userService: UserserviceService, private router: Router) {
+  constructor(
+    private userService: UserserviceService,
+    private dexieService: DexieService
+  ) {
     this.username = localStorage.getItem('app_username') ?? '';
     this.fullname = localStorage.getItem('app_fullname') ?? '';
   }
