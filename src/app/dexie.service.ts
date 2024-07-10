@@ -34,6 +34,10 @@ export class DexieService extends Dexie {
   async getAllItems(): Promise<MyItem[]> {
     return this.myKejadian.toArray();
   }
+
+  async removeItem(itemId: number): Promise<void> {
+    await this.myKejadian.delete(itemId);
+  }
 }
 
 interface MyItem {

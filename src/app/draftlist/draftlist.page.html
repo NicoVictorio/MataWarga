@@ -18,8 +18,14 @@
     <ion-item *ngFor="let kejadian of kejadianList">
       <ion-label>
         <h2>{{ kejadian.judul }}</h2>
-        <p>Created by: {{ kejadian.author }}</p>
+        <p>Issue id: {{ kejadian.id }}</p>
+        <p>Pelapor: {{ kejadian.author }}</p>
         <p>{{ kejadian.deskripsi }}</p>
+        <ion-button
+          expand="block"
+          (click)="submitIncident(kejadian.id, kejadian.author,kejadian.judul,kejadian.deskripsi,kejadian.gambar, kejadian.tujuan_instansi)"
+          >Konfirmasi kejadian</ion-button
+        >
       </ion-label>
     </ion-item>
   </ion-list>
