@@ -16,10 +16,10 @@ export class TambahPage {
     private router: Router,
     private toastController: ToastController,
     private userService: UserserviceService
-  ) { }
+  ) {}
 
   ngOnInit() {
-    // this.new_author = this.userService.userLogin.username;
+    this.new_author = localStorage.getItem('app_username') || '';
   }
 
   new_judul = '';

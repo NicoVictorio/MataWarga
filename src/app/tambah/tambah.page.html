@@ -9,28 +9,59 @@
 
 <ion-content [fullscreen]="true">
   <div class="container">
-    <ion-input label="author" label-placement="floating" fill="outline" placeholder="Enter author"
-      [(ngModel)]="new_author">
+    <ion-input
+      label="author"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Enter author"
+      [(ngModel)]="new_author"
+      readonly
+    >
     </ion-input>
     <br />
-    <ion-input label="Judul" label-placement="floating" fill="outline" placeholder="Enter title"
-      [(ngModel)]="new_judul">
+    <ion-input
+      label="Judul"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Enter title"
+      [(ngModel)]="new_judul"
+    >
     </ion-input>
     <br />
-    <ion-textarea label="Deskripsi" label-placement="floating" fill="outline" placeholder="Enter description" rows="5"
-      [(ngModel)]="new_deskripsi" name="description"></ion-textarea>
+    <ion-textarea
+      label="Deskripsi"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Enter description"
+      rows="5"
+      [(ngModel)]="new_deskripsi"
+      name="description"
+    ></ion-textarea>
     <br />
-    <ion-input label="Image URL" label-placement="floating" fill="outline" placeholder="Enter URL"
-      [(ngModel)]="new_gambar"></ion-input>
+    <ion-input
+      label="Image URL"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Enter URL"
+      [(ngModel)]="new_gambar"
+    ></ion-input>
     <br />
-    <ion-select interface="action-sheet" label="Tujuan" label-placement="floating" fill="outline"
-      [(ngModel)]="new_tujuan_instansi" name="targetInstitution">
+    <ion-select
+      interface="action-sheet"
+      label="Tujuan"
+      label-placement="floating"
+      fill="outline"
+      [(ngModel)]="new_tujuan_instansi"
+      name="targetInstitution"
+    >
       <ion-select-option value="Pemkot">Pemkot</ion-select-option>
       <ion-select-option value="PLN">PLN</ion-select-option>
       <ion-select-option value="PDAM">PDAM</ion-select-option>
       <ion-select-option value="Polisi">Polisi</ion-select-option>
     </ion-select>
     <br />
-    <ion-button expand="block" (click)="submitIncident()">Add Incident</ion-button>
+    <ion-button expand="block" (click)="submitIncident()"
+      >Add Incident</ion-button
+    >
   </div>
 </ion-content>
