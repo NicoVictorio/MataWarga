@@ -9,29 +9,43 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
-
-  kejadians: any[] = []
-  kejadian: any
-  comments: any[] = []
+  index = 0
+  kejadian: any = {}
 
   constructor(private route: ActivatedRoute, private kejadianservice: KejadianserviceService) { }
-  index = 0
 
   ngOnInit() {
-    this.kejadians = this.kejadianservice.kejadian
-
     this.route.params.subscribe(params => {
-      this.index = params['index'];
+      this.index = params['index']
+      this.kejadianservice.kejadianDetail(params['index']).subscribe(
+        (data) => {
+          this.kejadian = data;
+        }
+      );
     });
-    this.kejadian = this.kejadians[this.index]
-    this.comments = this.kejadian.komentar
   }
 
   like() {
-    this.kejadianservice.addLike(this.kejadian.id);
+    this.kejadianservice.addLike(this.kejadian.id).subscribe(
+      (response: any) => {
+        if (response.result === 'success') {
+          window.location.reload();
+        }
+        else {
+          alert(response.message)
+        }
+      });
   }
   dislike() {
-    this.kejadianservice.addDislike(this.kejadian.id);
+    this.kejadianservice.addDislike(this.kejadian.id).subscribe(
+      (response: any) => {
+        if (response.result === 'success') {
+          window.location.reload();
+        }
+        else {
+          alert(response.message)
+        }
+      });
   }
 
   likeComment(i: number) {

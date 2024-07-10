@@ -14,6 +14,7 @@
     width: 100%;
     padding: 10px;
   }
+
 </style>
 <ion-header [translucent]="true">
   <ion-toolbar>
@@ -25,21 +26,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-input
-    label="Search"
-    label-placement="floating"
-    fill="outline"
-    placeholder="Enter "
-    [(ngModel)]="search"
-    (keyup)="searchByJudul(search)"
-    style="margin: 1em 0"
-  ></ion-input>
+  <ion-input label="Search" label-placement="floating" fill="outline" placeholder="Enter " [(ngModel)]="search"
+    (keyup)="searchByJudul(search)" style="margin: 1em 0"></ion-input>
   <div id="container">
-    <ion-card
-      *ngFor="let kejadian of kejadians; let i = index"
-      color="primary"
-      class="scene-card"
-    >
+    <ion-card *ngFor="let kejadian of kejadians; let i = index" color="primary" class="scene-card">
       <div class="image">
         <ion-img [src]="kejadian.gambar"></ion-img>
       </div>
@@ -62,9 +52,7 @@
           </ion-button>
         </div>
         <ion-card-subtitle>Author : {{ kejadian.author }}</ion-card-subtitle>
-        <ion-card-subtitle
-          >Tujuan : {{ kejadian.tujuan_instansi }}</ion-card-subtitle
-        >
+        <ion-card-subtitle>Tujuan : {{ kejadian.tujuan_instansi }}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>{{ kejadian.deskripsi }}</ion-card-content>
     </ion-card>

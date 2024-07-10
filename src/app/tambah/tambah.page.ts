@@ -16,7 +16,7 @@ export class TambahPage {
     private router: Router,
     private toastController: ToastController,
     private userService: UserserviceService
-  ) {}
+  ) { }
 
   ngOnInit() {
     // this.new_author = this.userService.userLogin.username;
@@ -32,16 +32,6 @@ export class TambahPage {
   imageType: String = 'URL';
 
   submitIncident() {
-    // if (this.imageType == 'Camera') {
-    //   this.new_url = this.foodservice.link + 'images/' + this.new_name + '.png';
-    //   this.foodservice
-    //     .uploadImage(this.new_name, this.base64)
-    //     .subscribe((response: any) => {
-    //       if (response.result === 'success') {
-    //         alert('photo uploaded');
-    //       }
-    //     });
-    // }
     this.kejadianService
       .addKejadians(
         this.new_author,

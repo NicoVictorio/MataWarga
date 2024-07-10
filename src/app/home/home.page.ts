@@ -10,21 +10,14 @@ import { __param } from 'tslib';
 export class HomePage implements OnInit {
   kejadians: any[] = [];
 
-  constructor(private kejadianservice: KejadianserviceService) {}
+  constructor(private kejadianservice: KejadianserviceService) { }
 
   like(id: number) {
     this.kejadianservice.addLike(id);
   }
+
   dislike(id: number) {
     this.kejadianservice.addDislike(id);
-  }
-
-  chunkArray(arr: any[], chunkSize: number): any[][] {
-    const result = [];
-    for (let i = 0; i < arr.length; i += chunkSize) {
-      result.push(arr.slice(i, i + chunkSize));
-    }
-    return result;
   }
 
   ngOnInit() {

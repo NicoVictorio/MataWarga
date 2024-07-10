@@ -37,7 +37,7 @@
         <div class="like">
           <ion-button>
             <ion-icon name="chatbubble"></ion-icon>
-            <ion-text>{{ kejadian.komentar.length }}</ion-text>
+            <ion-text>{{ kejadian.total_komentar }}</ion-text>
           </ion-button>
           <ion-button (click)="like()">
             <ion-icon name="thumbs-up"></ion-icon>
@@ -54,17 +54,8 @@
       <ion-card-content>{{ kejadian.deskripsi }}</ion-card-content>
     </ion-card>
     <ion-text size="large">Comments : </ion-text>
-    <ion-card *ngFor="let comment of comments; let i = index" color="primary" class="scene-card">
-      <ion-card-header>
-        <ion-card-subtitle>{{ comment.pengguna }}</ion-card-subtitle>
-        <div class="like">
-          <ion-button (click)="likeComment(i)">
-            <ion-text>{{ comment.jumlah_like }}</ion-text>
-            <ion-icon name="thumbs-up"></ion-icon>
-          </ion-button>
-        </div>
-      </ion-card-header>
-      <ion-card-content>{{ comment.pesan }}</ion-card-content>
+    <ion-card *ngFor="let komen of kejadian.komentar">
+      {{ komen.fullname }}: {{ komen.pesan }}
     </ion-card>
   </div>
 </ion-content>

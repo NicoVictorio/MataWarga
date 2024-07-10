@@ -23,7 +23,7 @@ const routes: Routes = [
       import('./register/register.module').then((m) => m.RegisterPageModule),
   },
   {
-    path: 'detail',
+    path: 'detail/:index',
     loadChildren: () =>
       import('./detail/detail.module').then((m) => m.DetailPageModule),
   },
@@ -36,7 +36,11 @@ const routes: Routes = [
     path: 'search',
     loadChildren: () =>
       import('./search/search.module').then((m) => m.SearchPageModule),
+  },  {
+    path: 'drafttambah',
+    loadChildren: () => import('./drafttambah/drafttambah.module').then( m => m.DrafttambahPageModule)
   },
+
 ];
 @NgModule({
   imports: [
