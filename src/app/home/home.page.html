@@ -14,7 +14,6 @@
     width: 100%;
     padding: 10px;
   }
-
 </style>
 
 <ion-header [translucent]="true">
@@ -22,16 +21,17 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Home
-    </ion-title>
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content [fullscreen]="true">
   <div id="container">
-    <ion-card *ngFor="let kejadian of kejadians; let i = index" color="primary" class="scene-card">
+    <ion-card
+      *ngFor="let kejadian of kejadians; let i = index"
+      color="primary"
+      class="scene-card"
+    >
       <div class="image">
         <ion-img [src]="kejadian.gambar"></ion-img>
       </div>
@@ -42,7 +42,7 @@
         <div class="like">
           <ion-button>
             <ion-icon name="chatbubble"></ion-icon>
-            <ion-text>{{ kejadian.komentar.length }}</ion-text>
+            <!-- <ion-text>{{ kejadian.komentar.length }}</ion-text> -->
           </ion-button>
           <ion-button (click)="like(kejadian.id)">
             <ion-icon name="thumbs-up"></ion-icon>
@@ -54,7 +54,9 @@
           </ion-button>
         </div>
         <ion-card-subtitle>Author : {{ kejadian.author }}</ion-card-subtitle>
-        <ion-card-subtitle>Tujuan : {{ kejadian.tujuan_instansi }}</ion-card-subtitle>
+        <ion-card-subtitle
+          >Tujuan : {{ kejadian.tujuan_instansi }}</ion-card-subtitle
+        >
       </ion-card-header>
       <ion-card-content>{{ kejadian.deskripsi }}</ion-card-content>
     </ion-card>

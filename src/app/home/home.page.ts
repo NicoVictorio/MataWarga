@@ -7,10 +7,9 @@ import { KejadianserviceService } from '../kejadianservice.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  kejadians: any[] = [];
 
-  kejadians: any[] = []
-
-  constructor(private kejadianservice: KejadianserviceService) { }
+  constructor(private kejadianservice: KejadianserviceService) {}
 
   like(id: number) {
     this.kejadianservice.addLike(id);
@@ -28,6 +27,9 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    this.kejadians = this.kejadianservice.kejadian
+    this.kejadianservice.kejadiansList().subscribe((data) => {
+      console.log(data);
+      this.kejadians = data;
+    });
   }
 }

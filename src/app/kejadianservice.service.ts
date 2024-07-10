@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class KejadianserviceService {
-  constructor() { }
+  constructor(private http: HttpClient) {}
+
+  kejadiansList(): Observable<any> {
+    return this.http.get('https://ubaya.me/hybrid/160421029/uas_kejadians.php');
+  }
+
   kejadian = [
     {
       id: 0,
       author: 'nico',
       judul: 'Pencurian Dompet Nico',
       deskripsi: 'Pencurian dompet Nico yang terjadi di malam hari.',
-      gambar: 'https://images.tokopedia.net/img/cache/500-square/VqbcmM/2021/2/27/4e182a47-ccdf-4a2a-8fd7-ea36bec24747.jpg',
+      gambar:
+        'https://images.tokopedia.net/img/cache/500-square/VqbcmM/2021/2/27/4e182a47-ccdf-4a2a-8fd7-ea36bec24747.jpg',
       tujuan_instansi: 'Pemkot',
       jumlah_like: 10,
       jumlah_dislike: 0,
@@ -34,7 +42,8 @@ export class KejadianserviceService {
       author: 'vincent',
       judul: 'Kecelakaan Lalu Lintas',
       deskripsi: 'Kecelakaan mobil di persimpangan utama.',
-      gambar: 'https://img.harianjogja.com/posts/2023/08/15/1145217/kecelakaan-sepeda-motor.jpg',
+      gambar:
+        'https://img.harianjogja.com/posts/2023/08/15/1145217/kecelakaan-sepeda-motor.jpg',
       tujuan_instansi: 'Polisi Kota',
       jumlah_like: 10,
       jumlah_dislike: 0,
@@ -57,7 +66,8 @@ export class KejadianserviceService {
       author: 'steven',
       judul: 'Pencurian di Toko Serba Ada',
       deskripsi: 'Sebuah toko disatroni oleh pencuri.',
-      gambar: 'https://png.pngtree.com/png-clipart/20220306/original/pngtree-thief-who-stole-gold-coins-png-image_7416451.png',
+      gambar:
+        'https://png.pngtree.com/png-clipart/20220306/original/pngtree-thief-who-stole-gold-coins-png-image_7416451.png',
       tujuan_instansi: 'Kepolisian Sektor',
       jumlah_like: 10,
       jumlah_dislike: 0,
