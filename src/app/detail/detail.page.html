@@ -14,7 +14,6 @@
     width: 100%;
     padding: 10px;
   }
-
 </style>
 
 <ion-header [translucent]="true">
@@ -49,13 +48,21 @@
           </ion-button>
         </div>
         <ion-card-subtitle>Author : {{ kejadian.author }}</ion-card-subtitle>
-        <ion-card-subtitle>Tujuan : {{ kejadian.tujuan_instansi }}</ion-card-subtitle>
+        <ion-card-subtitle
+          >Tujuan : {{ kejadian.tujuan_instansi }}</ion-card-subtitle
+        >
       </ion-card-header>
       <ion-card-content>{{ kejadian.deskripsi }}</ion-card-content>
     </ion-card>
-    <ion-text size="large">Comments : </ion-text>
-    <ion-card *ngFor="let komen of kejadian.komentar">
-      {{ komen.fullname }}: {{ komen.pesan }}
+    <ion-text size="large">Comments :</ion-text>
+    <ion-card *ngFor="let komen of kejadian.komentar; let i = index">
+      <ion-card-header>
+        {{ komen.fullname }}: {{ komen.pesan }}
+        <ion-button (click)="likeComment(i)">
+          <ion-icon name="thumbs-up"></ion-icon>
+          <ion-text>{{ komen.jumlah_like }}</ion-text>
+        </ion-button>
+      </ion-card-header>
     </ion-card>
   </div>
 </ion-content>
