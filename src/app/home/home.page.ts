@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KejadianserviceService } from '../kejadianservice.service';
+import { __param } from 'tslib';
 
 @Component({
   selector: 'app-home',

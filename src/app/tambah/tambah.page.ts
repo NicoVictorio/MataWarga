@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { KejadianserviceService } from '../kejadianservice.service';
 import { UserserviceService } from '../userservice.service';
+// import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-tambah',
@@ -15,58 +16,49 @@ export class TambahPage {
     private router: Router,
     private toastController: ToastController,
     private userService: UserserviceService
-  ) { }
+  ) {}
 
-  ngOnInit(){
-    this.author = this.userService.userLogin.username
+  ngOnInit() {
+    // this.new_author = this.userService.userLogin.username;
   }
 
-  title = '';
-  description = '';
-  imageUrl = '';
-  targetInstitution = '';
-  date = '';
-  author = '';
+  new_judul = '';
+  new_deskripsi = '';
+  new_gambar = '';
+  new_tujuan_instansi = '';
+  new_author = '';
 
-  addIncident() {
-    const currentDate: Date = new Date();
-    const currentYear: number = currentDate.getFullYear();
-    const currentMonth: number = currentDate.getMonth() + 1;
-    const currentDay: number = currentDate.getDate();
-    const currentHour: number = currentDate.getHours();
-    const currentMinute: number = currentDate.getMinutes();
-    const currentSecond: number = currentDate.getSeconds();
-    this.date =
-      currentYear +
-      '-' +
-      currentMonth +
-      '-' +
-      currentDay +
-      ' ' +
-      currentHour +
-      ':' +
-      currentMinute +
-      ':' +
-      currentSecond;
+  base64: any;
+  imageType: String = 'URL';
 
-    this.kejadianService.addKejadian(
-      this.title,
-      this.author,
-      this.description,
-      this.imageUrl,
-      this.targetInstitution,
-      this.date
-    );
-    this.title = '';
-    this.author = '';
-    this.description = '';
-    this.imageUrl = '';
-    this.targetInstitution = '';
-    this.date = '';
-    this.presentToast('Kejadian Berhasil Ditambahkan');
-    console.log(this.kejadianService.kejadian);
-    this.router.navigate(['/tabs/home']);
+  submitIncident() {
+    // if (this.imageType == 'Camera') {
+    //   this.new_url = this.foodservice.link + 'images/' + this.new_name + '.png';
+    //   this.foodservice
+    //     .uploadImage(this.new_name, this.base64)
+    //     .subscribe((response: any) => {
+    //       if (response.result === 'success') {
+    //         alert('photo uploaded');
+    //       }
+    //     });
+    // }
+    this.kejadianService
+      .addKejadians(
+        this.new_author,
+        this.new_judul,
+        this.new_deskripsi,
+        this.new_gambar,
+        this.new_tujuan_instansi
+      )
+      .subscribe((response: any) => {
+        if (response.result === 'success') {
+          alert('success');
+        } else {
+          alert(response.message);
+        }
+      });
   }
+
   async presentToast(msg: string) {
     const toast = await this.toastController.create({
       message: msg,

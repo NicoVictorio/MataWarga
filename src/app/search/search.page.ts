@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { KejadianserviceService } from '../kejadianservice.service';
+import { __param } from 'tslib';
 
 @Component({
   selector: 'app-search',
@@ -8,11 +9,29 @@ import { KejadianserviceService } from '../kejadianservice.service';
   styleUrls: ['./search.page.scss'],
 })
 export class SearchPage implements OnInit {
+  kejadians: any[] = [];
+  search = '';
+  constructor(
+    private router: Router,
+    private kejadianservice: KejadianserviceService
+  ) {}
 
-  kejadians: any[] = []
-  search = ""
-  constructor(private router: Router, private kejadianservice: KejadianserviceService) { }
+  ngOnInit() {
+    // this.kejadians = this.kejadianservice.kejadian;
+    this.refresh();
+  }
 
+  searchByJudul(search: string) {
+    this.kejadianservice.kejadiansSearch(search).subscribe((data) => {
+      console.log(data);
+      this.kejadians = data;
+    });
+  }
+  refresh() {
+    this.searchByJudul(this.search);
+  }
+
+  //
   like(id: number) {
     this.kejadianservice.addLike(id);
   }
@@ -27,12 +46,8 @@ export class SearchPage implements OnInit {
     }
     return result;
   }
-
-  ngOnInit() {
-    this.kejadians = this.kejadianservice.kejadian
-  }
   updateDataSource() {
-    this.kejadians = this.kejadianservice.searchJudul(this.search)
-    console.log(this.kejadians)
+    this.kejadians = this.kejadianservice.searchJudul(this.search);
+    console.log(this.kejadians);
   }
 }
